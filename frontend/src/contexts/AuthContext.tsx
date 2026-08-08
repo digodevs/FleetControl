@@ -7,6 +7,7 @@ interface AuthContextValue {
   user: CurrentUser | null;
   isLoading: boolean;
   isAuthenticated: boolean;
+  setSession: (accessToken: string, refreshToken: string) => void;
   logout: () => void;
 }
 
@@ -28,6 +29,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       user: data ?? null,
       isLoading,
       isAuthenticated: Boolean(data),
+      setSession: (accessToken: string, refreshToken: string) => {
+        window.localStorage.setItem('fleetcontrol.accessToken', accessToken);
+        window.localStorage.setItem('fleetcontrol.refreshToken', refreshToken);
+        queryClient.invalidateQueries({ queryKey: ['current-user'] });
+      },
       logout: () => {
         window.localStorage.removeItem('fleetcontrol.accessToken');
         window.localStorage.removeItem('fleetcontrol.refreshToken');
