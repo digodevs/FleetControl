@@ -17,29 +17,29 @@ import { useCreateVehicle, useDeleteVehicle, useUpdateVehicle, useVehicles } fro
 import type { FuelType, Vehicle, VehiclePayload, VehicleStatus, VehicleType } from '../types/vehicle';
 
 const statusOptions: Array<{ value: VehicleStatus; label: string }> = [
-  { value: 'AVAILABLE', label: 'Available' },
-  { value: 'IN_USE', label: 'In use' },
-  { value: 'MAINTENANCE', label: 'Maintenance' },
-  { value: 'INACTIVE', label: 'Inactive' },
+  { value: 'AVAILABLE', label: 'Disponivel' },
+  { value: 'IN_USE', label: 'Em uso' },
+  { value: 'MAINTENANCE', label: 'Em manutencao' },
+  { value: 'INACTIVE', label: 'Inativo' },
 ];
 
 const typeOptions: Array<{ value: VehicleType; label: string }> = [
-  { value: 'CAR', label: 'Car' },
-  { value: 'MOTORCYCLE', label: 'Motorcycle' },
+  { value: 'CAR', label: 'Carro' },
+  { value: 'MOTORCYCLE', label: 'Moto' },
   { value: 'VAN', label: 'Van' },
-  { value: 'TRUCK', label: 'Truck' },
-  { value: 'BUS', label: 'Bus' },
-  { value: 'OTHER', label: 'Other' },
+  { value: 'TRUCK', label: 'Caminhao' },
+  { value: 'BUS', label: 'Onibus' },
+  { value: 'OTHER', label: 'Outro' },
 ];
 
 const fuelOptions: Array<{ value: FuelType; label: string }> = [
-  { value: 'GASOLINE', label: 'Gasoline' },
-  { value: 'ETHANOL', label: 'Ethanol' },
+  { value: 'GASOLINE', label: 'Gasolina' },
+  { value: 'ETHANOL', label: 'Etanol' },
   { value: 'FLEX', label: 'Flex' },
   { value: 'DIESEL', label: 'Diesel' },
-  { value: 'ELECTRIC', label: 'Electric' },
-  { value: 'HYBRID', label: 'Hybrid' },
-  { value: 'OTHER', label: 'Other' },
+  { value: 'ELECTRIC', label: 'Eletrico' },
+  { value: 'HYBRID', label: 'Hibrido' },
+  { value: 'OTHER', label: 'Outro' },
 ];
 
 const initialForm: VehiclePayload = {
@@ -57,11 +57,11 @@ const initialForm: VehiclePayload = {
 };
 
 const sortableColumns = [
-  { value: 'createdAt,desc', label: 'Newest' },
-  { value: 'licensePlate,asc', label: 'Plate A-Z' },
-  { value: 'brand,asc', label: 'Brand A-Z' },
-  { value: 'year,desc', label: 'Year desc' },
-  { value: 'mileage,desc', label: 'Mileage desc' },
+  { value: 'createdAt,desc', label: 'Mais recentes' },
+  { value: 'licensePlate,asc', label: 'Placa A-Z' },
+  { value: 'brand,asc', label: 'Marca A-Z' },
+  { value: 'year,desc', label: 'Ano desc' },
+  { value: 'mileage,desc', label: 'Quilometragem desc' },
 ];
 
 const typeLabels = Object.fromEntries(typeOptions.map((option) => [option.value, option.label])) as Record<VehicleType, string>;
@@ -129,7 +129,7 @@ export function VehiclesPage() {
     event.preventDefault();
 
     if (!form.licensePlate.trim() || !form.brand.trim() || !form.model.trim()) {
-      showToast('Plate, brand, and model are required.', 'error');
+      showToast('Placa, marca e modelo sao obrigatorios.', 'error');
       return;
     }
 
@@ -148,14 +148,14 @@ export function VehiclesPage() {
     try {
       if (editingVehicle) {
         await updateVehicle.mutateAsync({ id: editingVehicle.id, payload });
-        showToast('Vehicle updated successfully.', 'success');
+        showToast('Veiculo atualizado com sucesso.', 'success');
       } else {
         await createVehicle.mutateAsync(payload);
-        showToast('Vehicle created successfully.', 'success');
+        showToast('Veiculo criado com sucesso.', 'success');
       }
       setFormOpen(false);
     } catch {
-      showToast('Could not save the vehicle. Check the fields and try again.', 'error');
+      showToast('Nao foi possivel salvar o veiculo. Confira os campos e tente novamente.', 'error');
     }
   }
 
@@ -166,22 +166,22 @@ export function VehiclesPage() {
 
     try {
       await deleteVehicle.mutateAsync(vehicleToDelete.id);
-      showToast('Vehicle deleted successfully.', 'success');
+      showToast('Veiculo excluido com sucesso.', 'success');
       setVehicleToDelete(null);
     } catch {
-      showToast('Could not delete the vehicle.', 'error');
+      showToast('Nao foi possivel excluir o veiculo.', 'error');
     }
   }
 
   return (
     <section className="space-y-6">
       <PageHeader
-        title="Vehicles"
-        description="Manage fleet records with live data from the API."
+        title="Veiculos"
+        description="Gerencie os registros da frota com dados em tempo real da API."
         actions={
           canManageVehicles ? (
             <Button onClick={openCreateModal} icon={<Plus size={18} />}>
-              New vehicle
+              Novo veiculo
             </Button>
           ) : null
         }
@@ -195,7 +195,7 @@ export function VehiclesPage() {
               setSearch(value);
               setPage(0);
             }}
-            placeholder="Search by plate, brand, or model"
+            placeholder="Pesquisar por placa, marca ou modelo"
           />
           <Select
             value={status}
@@ -203,9 +203,9 @@ export function VehiclesPage() {
               setStatus(event.target.value as VehicleStatus | '');
               setPage(0);
             }}
-            aria-label="Filter by status"
+            aria-label="Filtrar por status"
           >
-            <option value="">All statuses</option>
+            <option value="">Todos os status</option>
             {statusOptions.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
@@ -218,16 +218,16 @@ export function VehiclesPage() {
               setType(event.target.value as VehicleType | '');
               setPage(0);
             }}
-            aria-label="Filter by type"
+            aria-label="Filtrar por tipo"
           >
-            <option value="">All types</option>
+            <option value="">Todos os tipos</option>
             {typeOptions.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>
             ))}
           </Select>
-          <Select value={sort} onChange={(event) => setSort(event.target.value)} aria-label="Sort vehicles">
+          <Select value={sort} onChange={(event) => setSort(event.target.value)} aria-label="Ordenar veiculos">
             {sortableColumns.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
@@ -235,7 +235,7 @@ export function VehiclesPage() {
             ))}
           </Select>
           <Button variant="secondary" onClick={resetFilters} icon={<RefreshCw size={17} />} disabled={!hasFilters && sort === 'createdAt,desc'}>
-            Reset
+            Limpar
           </Button>
         </div>
       </Card>
@@ -243,8 +243,8 @@ export function VehiclesPage() {
       <Card className="overflow-hidden">
         <div className="flex items-center justify-between border-b border-slate-800 px-4 py-3">
           <div>
-            <h2 className="text-sm font-semibold text-white">Fleet inventory</h2>
-            <p className="text-xs text-slate-400">{vehiclesQuery.data?.totalElements ?? 0} records found</p>
+            <h2 className="text-sm font-semibold text-white">Inventario da frota</h2>
+            <p className="text-xs text-slate-400">{vehiclesQuery.data?.totalElements ?? 0} registros encontrados</p>
           </div>
           <ArrowUpDown size={18} className="text-slate-500" aria-hidden="true" />
         </div>
@@ -253,13 +253,13 @@ export function VehiclesPage() {
           <Table>
             <thead className="bg-surface-900">
               <tr>
-                <Th>Vehicle</Th>
-                <Th>Type</Th>
+                <Th>Veiculo</Th>
+                <Th>Tipo</Th>
                 <Th>Status</Th>
-                <Th>Fuel</Th>
-                <Th>Year</Th>
-                <Th>Mileage</Th>
-                <Th className="text-right">Actions</Th>
+                <Th>Combustivel</Th>
+                <Th>Ano</Th>
+                <Th>Quilometragem</Th>
+                <Th className="text-right">Acoes</Th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-800">
@@ -293,7 +293,7 @@ export function VehiclesPage() {
                           disabled={!canManageVehicles}
                           onClick={() => openEditModal(vehicle)}
                           icon={<Pencil size={16} />}
-                          aria-label={`Edit ${vehicle.licensePlate}`}
+                          aria-label={`Editar ${vehicle.licensePlate}`}
                         />
                         <Button
                           variant="ghost"
@@ -301,7 +301,7 @@ export function VehiclesPage() {
                           disabled={!canManageVehicles}
                           onClick={() => setVehicleToDelete(vehicle)}
                           icon={<Trash2 size={16} />}
-                          aria-label={`Delete ${vehicle.licensePlate}`}
+                          aria-label={`Excluir ${vehicle.licensePlate}`}
                         />
                       </div>
                     </Td>
@@ -321,16 +321,16 @@ export function VehiclesPage() {
 
       <Modal
         open={formOpen}
-        title={editingVehicle ? 'Edit vehicle' : 'New vehicle'}
-        description="Keep the operational record accurate for reporting and availability controls."
+        title={editingVehicle ? 'Editar veiculo' : 'Novo veiculo'}
+        description="Mantenha o registro operacional correto para relatorios e controles de disponibilidade."
         onClose={() => setFormOpen(false)}
         footer={
           <>
             <Button variant="secondary" onClick={() => setFormOpen(false)}>
-              Cancel
+              Cancelar
             </Button>
             <Button type="submit" form="vehicle-form" disabled={createVehicle.isPending || updateVehicle.isPending}>
-              {editingVehicle ? 'Save changes' : 'Create vehicle'}
+              {editingVehicle ? 'Salvar alteracoes' : 'Criar veiculo'}
             </Button>
           </>
         }
@@ -340,22 +340,22 @@ export function VehiclesPage() {
 
       <Modal
         open={Boolean(vehicleToDelete)}
-        title="Delete vehicle"
-        description="This action cannot be undone."
+        title="Excluir veiculo"
+        description="Esta acao nao pode ser desfeita."
         onClose={() => setVehicleToDelete(null)}
         footer={
           <>
             <Button variant="secondary" onClick={() => setVehicleToDelete(null)}>
-              Cancel
+              Cancelar
             </Button>
             <Button variant="danger" onClick={handleDelete} disabled={deleteVehicle.isPending} icon={<Trash2 size={17} />}>
-              Delete
+              Excluir
             </Button>
           </>
         }
       >
         <p className="text-sm text-slate-300">
-          Confirm deletion of <span className="font-semibold text-white">{vehicleToDelete?.licensePlate}</span>.
+          Confirme a exclusao de <span className="font-semibold text-white">{vehicleToDelete?.licensePlate}</span>.
         </p>
       </Modal>
     </section>
@@ -377,25 +377,25 @@ function VehicleForm({
 
   return (
     <form id="vehicle-form" className="grid gap-4 sm:grid-cols-2" onSubmit={onSubmit}>
-      <Input label="Plate" value={form.licensePlate} onChange={(event) => updateField('licensePlate', event.target.value)} required />
-      <Input label="Brand" value={form.brand} onChange={(event) => updateField('brand', event.target.value)} required />
-      <Input label="Model" value={form.model} onChange={(event) => updateField('model', event.target.value)} required />
-      <Input label="Year" type="number" min={1950} max={2100} value={form.year} onChange={(event) => updateField('year', Number(event.target.value))} required />
-      <Select label="Type" value={form.type} onChange={(event) => updateField('type', event.target.value as VehicleType)}>
+      <Input label="Placa" value={form.licensePlate} onChange={(event) => updateField('licensePlate', event.target.value)} required />
+      <Input label="Marca" value={form.brand} onChange={(event) => updateField('brand', event.target.value)} required />
+      <Input label="Modelo" value={form.model} onChange={(event) => updateField('model', event.target.value)} required />
+      <Input label="Ano" type="number" min={1950} max={2100} value={form.year} onChange={(event) => updateField('year', Number(event.target.value))} required />
+      <Select label="Tipo" value={form.type} onChange={(event) => updateField('type', event.target.value as VehicleType)}>
         {typeOptions.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}
           </option>
         ))}
       </Select>
-      <Select label="Fuel" value={form.fuelType} onChange={(event) => updateField('fuelType', event.target.value as FuelType)}>
+      <Select label="Combustivel" value={form.fuelType} onChange={(event) => updateField('fuelType', event.target.value as FuelType)}>
         {fuelOptions.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}
           </option>
         ))}
       </Select>
-      <Input label="Mileage" type="number" min={0} value={form.mileage} onChange={(event) => updateField('mileage', Number(event.target.value))} required />
+      <Input label="Quilometragem" type="number" min={0} value={form.mileage} onChange={(event) => updateField('mileage', Number(event.target.value))} required />
       <Select label="Status" value={form.status} onChange={(event) => updateField('status', event.target.value as VehicleStatus)}>
         {statusOptions.map((option) => (
           <option key={option.value} value={option.value}>
@@ -403,9 +403,9 @@ function VehicleForm({
           </option>
         ))}
       </Select>
-      <Input label="Color" value={form.color ?? ''} onChange={(event) => updateField('color', event.target.value)} />
+      <Input label="Cor" value={form.color ?? ''} onChange={(event) => updateField('color', event.target.value)} />
       <Input label="RENAVAM" value={form.renavam ?? ''} onChange={(event) => updateField('renavam', event.target.value)} />
-      <Input label="Chassis" className="sm:col-span-2" value={form.chassis ?? ''} onChange={(event) => updateField('chassis', event.target.value)} />
+      <Input label="Chassi" className="sm:col-span-2" value={form.chassis ?? ''} onChange={(event) => updateField('chassis', event.target.value)} />
     </form>
   );
 }
@@ -431,10 +431,10 @@ function ErrorRow({ onRetry }: { onRetry: () => void }) {
     <tr>
       <td colSpan={7} className="px-4 py-10 text-center">
         <div className="mx-auto max-w-sm space-y-3">
-          <p className="text-sm font-medium text-white">Vehicles could not be loaded.</p>
-          <p className="text-sm text-slate-400">Check your connection and try again.</p>
+          <p className="text-sm font-medium text-white">Nao foi possivel carregar os veiculos.</p>
+          <p className="text-sm text-slate-400">Verifique sua conexao e tente novamente.</p>
           <Button variant="secondary" onClick={onRetry} icon={<RefreshCw size={17} />}>
-            Try again
+            Tentar novamente
           </Button>
         </div>
       </td>
@@ -447,9 +447,9 @@ function EmptyRow({ hasFilters }: { hasFilters: boolean }) {
     <tr>
       <td colSpan={7} className="px-4 py-12 text-center">
         <div className="mx-auto max-w-md space-y-2">
-          <p className="text-sm font-medium text-white">{hasFilters ? 'No vehicles match these filters.' : 'No vehicles registered yet.'}</p>
+          <p className="text-sm font-medium text-white">{hasFilters ? 'Nenhum veiculo corresponde a estes filtros.' : 'Nenhum veiculo cadastrado ainda.'}</p>
           <p className="text-sm text-slate-400">
-            {hasFilters ? 'Adjust the search terms or filters to broaden the results.' : 'Create the first fleet record when the operation is ready.'}
+            {hasFilters ? 'Ajuste a busca ou os filtros para ampliar os resultados.' : 'Crie o primeiro registro da frota quando a operacao estiver pronta.'}
           </p>
         </div>
       </td>

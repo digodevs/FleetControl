@@ -1,26 +1,26 @@
-# Security Policy
+# Politica De Seguranca
 
-## Supported Versions
+## Versoes Suportadas
 
-| Version | Supported |
+| Versao | Suportada |
 | --- | --- |
-| 1.0.x | Yes |
+| 1.0.x | Sim |
 
-## Reporting a Vulnerability
+## Relato De Vulnerabilidades
 
-Please do not open public issues for security vulnerabilities.
+Nao abra issues publicas para vulnerabilidades de seguranca.
 
-Report vulnerabilities privately to the project maintainer. Include:
+Relate vulnerabilidades de forma privada ao mantenedor do projeto. Inclua:
 
-- Affected version or commit.
-- Steps to reproduce.
-- Impact and affected components.
-- Suggested mitigation, if known.
+- Versao ou commit afetado.
+- Passos para reproduzir.
+- Impacto e componentes afetados.
+- Mitigacao sugerida, se conhecida.
 
-## Security Practices
+## Praticas De Seguranca
 
-- Never commit real database passwords, JWT secrets, API keys, or production `.env` files.
-- Use strong JWT secrets with at least 32 bytes.
-- Rotate credentials after accidental exposure.
-- Keep dependencies updated.
-- Review authentication, authorization, and validation changes carefully.
+- Nunca versione senhas reais de banco, segredos JWT, chaves de API ou arquivos `.env` de producao.
+- Use segredos JWT fortes com pelo menos 32 bytes.
+- Rotacione credenciais apos exposicao acidental.
+- Mantenha dependencias atualizadas.
+- Revise cuidadosamente mudancas de autenticacao, autorizacao e validacao.

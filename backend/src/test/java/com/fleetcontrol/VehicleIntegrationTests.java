@@ -75,7 +75,7 @@ class VehicleIntegrationTests {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json(vehiclePayload("ABC-1D23", 1400L, "AVAILABLE"))))
                 .andExpect(status().isConflict())
-                .andExpect(jsonPath("$.message").value("License plate is already registered."));
+                .andExpect(jsonPath("$.message").value("Placa ja esta cadastrada."));
     }
 
     @Test
@@ -97,7 +97,7 @@ class VehicleIntegrationTests {
         mockMvc.perform(get("/vehicles/{id}", "11111111-1111-1111-1111-111111111111")
                         .header(HttpHeaders.AUTHORIZATION, bearer(adminToken)))
                 .andExpect(status().isNotFound())
-                .andExpect(jsonPath("$.message").value("Vehicle not found."));
+                .andExpect(jsonPath("$.message").value("Veiculo nao encontrado."));
     }
 
     @Test
@@ -127,7 +127,7 @@ class VehicleIntegrationTests {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json(vehiclePayload("MIL1D23", 100L, "AVAILABLE"))))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.message").value("Mileage cannot be lower than the current value."));
+                .andExpect(jsonPath("$.message").value("A quilometragem nao pode ser menor que o valor atual."));
     }
 
     @Test
@@ -166,14 +166,14 @@ class VehicleIntegrationTests {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json(vehiclePayload("EMP1D23", 1200L, "AVAILABLE"))))
                 .andExpect(status().isForbidden())
-                .andExpect(jsonPath("$.message").value("Access is denied."));
+                .andExpect(jsonPath("$.message").value("Acesso negado."));
     }
 
     @Test
     void requestWithoutJwtIsRejected() throws Exception {
         mockMvc.perform(get("/vehicles"))
                 .andExpect(status().isUnauthorized())
-                .andExpect(jsonPath("$.message").value("Authentication is required."));
+                .andExpect(jsonPath("$.message").value("Autenticacao obrigatoria."));
     }
 
     @Test
@@ -245,4 +245,3 @@ class VehicleIntegrationTests {
         return objectMapper.writeValueAsString(body);
     }
 }
-

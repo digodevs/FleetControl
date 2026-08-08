@@ -29,35 +29,34 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @Operation(summary = "Register a new user")
+    @Operation(summary = "Cadastrar novo usuario")
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(@Valid @RequestBody RegisterRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(authService.register(request));
     }
 
-    @Operation(summary = "Authenticate a user")
+    @Operation(summary = "Autenticar usuario")
     @PostMapping("/login")
     public AuthResponse login(@Valid @RequestBody LoginRequest request) {
         return authService.login(request);
     }
 
-    @Operation(summary = "Refresh an access token")
+    @Operation(summary = "Renovar token de acesso")
     @PostMapping("/refresh")
     public AuthResponse refresh(@Valid @RequestBody RefreshTokenRequest request) {
         return authService.refresh(request.refreshToken());
     }
 
-    @Operation(summary = "Revoke a refresh token", security = @SecurityRequirement(name = "bearerAuth"))
+    @Operation(summary = "Revogar refresh token", security = @SecurityRequirement(name = "bearerAuth"))
     @PostMapping("/logout")
     public ResponseEntity<Void> logout(@Valid @RequestBody RefreshTokenRequest request) {
         authService.logout(request.refreshToken());
         return ResponseEntity.noContent().build();
     }
 
-    @Operation(summary = "Get authenticated user", security = @SecurityRequirement(name = "bearerAuth"))
+    @Operation(summary = "Obter usuario autenticado", security = @SecurityRequirement(name = "bearerAuth"))
     @GetMapping("/me")
     public UserResponse me(@AuthenticationPrincipal AuthenticatedUser authenticatedUser) {
         return authService.me(authenticatedUser);
     }
 }
-

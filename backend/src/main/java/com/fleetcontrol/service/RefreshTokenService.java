@@ -44,15 +44,15 @@ public class RefreshTokenService {
                 .orElseThrow(() -> new InvalidTokenException("Invalid refresh token."));
 
         if (refreshToken.isRevoked()) {
-            throw new InvalidTokenException("Refresh token has been revoked.");
+            throw new InvalidTokenException("O refresh token foi revogado.");
         }
 
         if (refreshToken.getExpiresAt().isBefore(OffsetDateTime.now())) {
-            throw new InvalidTokenException("Refresh token has expired.");
+            throw new InvalidTokenException("O refresh token expirou.");
         }
 
         if (!refreshToken.getUser().isEnabled()) {
-            throw new InvalidTokenException("User account is disabled.");
+            throw new InvalidTokenException("A conta do usuario esta desativada.");
         }
 
         return refreshToken;
@@ -71,4 +71,3 @@ public class RefreshTokenService {
         return Base64.getUrlEncoder().withoutPadding().encodeToString(bytes);
     }
 }
-

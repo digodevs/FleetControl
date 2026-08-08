@@ -6,18 +6,23 @@ import { Button } from '../components/ui/Button';
 
 const navigation = [
   { label: 'Dashboard', href: '/dashboard', icon: BarChart3 },
-  { label: 'Vehicles', href: '/vehicles', icon: Car },
-  { label: 'Users', href: '/users', icon: Users },
-  { label: 'Profile', href: '/profile', icon: User },
-  { label: 'Settings', href: '/settings', icon: Settings },
+  { label: 'Veiculos', href: '/vehicles', icon: Car },
+  { label: 'Usuarios', href: '/users', icon: Users },
+  { label: 'Perfil', href: '/profile', icon: User },
+  { label: 'Configuracoes', href: '/settings', icon: Settings },
 ];
 
 const pageTitles: Record<string, string> = {
   '/dashboard': 'Dashboard',
-  '/vehicles': 'Vehicles',
-  '/users': 'Users',
-  '/profile': 'Profile',
-  '/settings': 'Settings',
+  '/vehicles': 'Veiculos',
+  '/users': 'Usuarios',
+  '/profile': 'Perfil',
+  '/settings': 'Configuracoes',
+};
+
+const roleLabels: Record<string, string> = {
+  ADMIN: 'Administrador',
+  EMPLOYEE: 'Colaborador',
 };
 
 export function AppLayout() {
@@ -26,6 +31,7 @@ export function AppLayout() {
   const { user, isLoading, logout } = useAuth();
   const location = useLocation();
   const pageTitle = pageTitles[location.pathname] ?? 'Dashboard';
+  const userRole = user?.roles?.[0] ? roleLabels[user.roles[0]] ?? user.roles[0] : 'Sem perfil';
 
   const initials = useMemo(() => {
     if (!user?.name) {
@@ -48,13 +54,13 @@ export function AppLayout() {
         <header className="sticky top-0 z-20 border-b border-slate-800 bg-surface-950/95 px-4 py-3 backdrop-blur sm:px-6 lg:px-8">
           <div className="flex items-center justify-between gap-4">
             <div className="flex min-w-0 items-center gap-3">
-              <Button variant="ghost" className="h-9 w-9 p-0 lg:hidden" onClick={() => setMobileOpen(true)} icon={<Menu size={19} />} aria-label="Open menu" />
+              <Button variant="ghost" className="h-9 w-9 p-0 lg:hidden" onClick={() => setMobileOpen(true)} icon={<Menu size={19} />} aria-label="Abrir menu" />
               <Button
                 variant="ghost"
                 className="hidden h-9 w-9 p-0 lg:inline-flex"
                 onClick={() => setCollapsed((value) => !value)}
                 icon={collapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
-                aria-label="Toggle sidebar"
+                aria-label="Alternar menu lateral"
               />
               <div className="min-w-0">
                 <div className="flex items-center gap-2 text-xs text-slate-500">
@@ -70,12 +76,12 @@ export function AppLayout() {
 
             <div className="flex min-w-0 items-center gap-3">
               <div className="hidden min-w-0 text-right sm:block">
-                <p className="truncate text-sm font-medium text-white">{isLoading ? 'Loading user' : user?.name ?? 'Not signed in'}</p>
-                <p className="truncate text-xs text-slate-400">{user?.roles?.[0] ?? 'No role'}</p>
+                <p className="truncate text-sm font-medium text-white">{isLoading ? 'Carregando usuario' : user?.name ?? 'Usuario nao autenticado'}</p>
+                <p className="truncate text-xs text-slate-400">{userRole}</p>
               </div>
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded bg-accent-500 text-sm font-semibold text-surface-950">{initials}</div>
               <Button variant="ghost" className="hidden sm:inline-flex" onClick={logout} icon={<LogOut size={17} />}>
-                Logout
+                Sair
               </Button>
             </div>
           </div>
@@ -114,11 +120,11 @@ function Sidebar({
             {!collapsed ? (
               <div className="min-w-0">
                 <p className="truncate text-sm font-semibold uppercase tracking-wide text-accent-400">FleetControl</p>
-                <p className="truncate text-xs text-slate-400">Fleet operations</p>
+                <p className="truncate text-xs text-slate-400">Operacoes de frota</p>
               </div>
             ) : null}
           </Link>
-          <Button variant="ghost" className="h-9 w-9 p-0 lg:hidden" onClick={onMobileClose} icon={<X size={18} />} aria-label="Close menu" />
+          <Button variant="ghost" className="h-9 w-9 p-0 lg:hidden" onClick={onMobileClose} icon={<X size={18} />} aria-label="Fechar menu" />
         </div>
 
         <nav className="flex-1 space-y-1 px-3 py-4">
@@ -146,11 +152,10 @@ function Sidebar({
         <div className="border-t border-slate-800 p-3">
           <NavLink to="/profile" className="flex min-h-10 items-center gap-3 rounded px-3 py-2 text-sm text-slate-300 hover:bg-surface-800 hover:text-white">
             <User size={18} aria-hidden="true" />
-            {!collapsed ? <span>Account</span> : null}
+            {!collapsed ? <span>Conta</span> : null}
           </NavLink>
         </div>
       </aside>
     </>
   );
 }
-

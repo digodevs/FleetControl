@@ -11,44 +11,43 @@ import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 
 public record VehicleUpdateRequest(
-        @NotBlank
-        @Size(min = 7, max = 20)
+        @NotBlank(message = "A placa e obrigatoria.")
+        @Size(min = 7, max = 20, message = "A placa deve ter entre 7 e 20 caracteres.")
         String licensePlate,
 
-        @NotBlank
-        @Size(max = 80)
+        @NotBlank(message = "A marca e obrigatoria.")
+        @Size(max = 80, message = "A marca deve ter no maximo 80 caracteres.")
         String brand,
 
-        @NotBlank
-        @Size(max = 80)
+        @NotBlank(message = "O modelo e obrigatorio.")
+        @Size(max = 80, message = "O modelo deve ter no maximo 80 caracteres.")
         String model,
 
-        @NotNull
-        @Min(1900)
-        @Max(2100)
+        @NotNull(message = "O ano e obrigatorio.")
+        @Min(value = 1900, message = "O ano deve ser maior ou igual a 1900.")
+        @Max(value = 2100, message = "O ano deve ser menor ou igual a 2100.")
         Integer year,
 
-        @NotNull
+        @NotNull(message = "O tipo e obrigatorio.")
         VehicleType type,
 
-        @NotNull
+        @NotNull(message = "O combustivel e obrigatorio.")
         FuelType fuelType,
 
-        @NotNull
-        @PositiveOrZero
+        @NotNull(message = "A quilometragem e obrigatoria.")
+        @PositiveOrZero(message = "A quilometragem deve ser maior ou igual a zero.")
         Long mileage,
 
-        @NotNull
+        @NotNull(message = "O status e obrigatorio.")
         VehicleStatus status,
 
-        @Size(max = 50)
+        @Size(max = 50, message = "A cor deve ter no maximo 50 caracteres.")
         String color,
 
-        @Size(max = 20)
+        @Size(max = 20, message = "O RENAVAM deve ter no maximo 20 caracteres.")
         String renavam,
 
-        @Size(max = 40)
+        @Size(max = 40, message = "O chassi deve ter no maximo 40 caracteres.")
         String chassis
 ) {
 }
-

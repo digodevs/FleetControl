@@ -32,7 +32,7 @@ public class JsonAuthenticationEntryPoint implements AuthenticationEntryPoint {
                 OffsetDateTime.now(),
                 HttpStatus.UNAUTHORIZED.value(),
                 HttpStatus.UNAUTHORIZED.getReasonPhrase(),
-                "Authentication is required.",
+                "Autenticacao obrigatoria.",
                 request.getRequestURI(),
                 Map.of()
         );
@@ -42,4 +42,3 @@ public class JsonAuthenticationEntryPoint implements AuthenticationEntryPoint {
         objectMapper.writeValue(response.getOutputStream(), body);
     }
 }
-

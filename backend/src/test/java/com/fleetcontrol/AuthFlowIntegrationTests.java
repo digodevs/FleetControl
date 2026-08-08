@@ -99,7 +99,7 @@ class AuthFlowIntegrationTests {
                                 "password", "wrong-password"
                         ))))
                 .andExpect(status().isUnauthorized())
-                .andExpect(jsonPath("$.message").value("Invalid email or password."));
+                .andExpect(jsonPath("$.message").value("E-mail ou senha invalidos."));
     }
 
     @Test
@@ -117,7 +117,7 @@ class AuthFlowIntegrationTests {
     void protectedRouteRequiresToken() throws Exception {
         mockMvc.perform(get("/auth/me"))
                 .andExpect(status().isUnauthorized())
-                .andExpect(jsonPath("$.message").value("Authentication is required."));
+                .andExpect(jsonPath("$.message").value("Autenticacao obrigatoria."));
     }
 
     @Test
@@ -155,7 +155,7 @@ class AuthFlowIntegrationTests {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json(Map.of("refreshToken", refreshToken))))
                 .andExpect(status().isUnauthorized())
-                .andExpect(jsonPath("$.message").value("Refresh token has been revoked."));
+                .andExpect(jsonPath("$.message").value("O refresh token foi revogado."));
     }
 
     private String register(String name, String email, String password) throws Exception {
@@ -176,4 +176,3 @@ class AuthFlowIntegrationTests {
         return objectMapper.writeValueAsString(body);
     }
 }
-

@@ -32,7 +32,7 @@ public class JsonAccessDeniedHandler implements AccessDeniedHandler {
                 OffsetDateTime.now(),
                 HttpStatus.FORBIDDEN.value(),
                 HttpStatus.FORBIDDEN.getReasonPhrase(),
-                "Access is denied.",
+                "Acesso negado.",
                 request.getRequestURI(),
                 Map.of()
         );
@@ -42,4 +42,3 @@ public class JsonAccessDeniedHandler implements AccessDeniedHandler {
         objectMapper.writeValue(response.getOutputStream(), body);
     }
 }
-

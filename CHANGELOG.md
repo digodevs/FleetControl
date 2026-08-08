@@ -1,19 +1,19 @@
 # Changelog
 
-All notable changes to FleetControl are documented in this file.
+Todas as mudancas relevantes do FleetControl sao documentadas neste arquivo.
 
-The format is based on Keep a Changelog, and this project follows Semantic Versioning.
+O formato e baseado em Keep a Changelog, e este projeto segue Versionamento Semantico.
 
 ## [1.0.0] - 2026-08-07
 
-### Added
+### Adicionado
 
-- Spring Boot REST API with PostgreSQL, Flyway migrations, JPA validation, and standardized error handling.
-- JWT authentication with refresh tokens, BCrypt password hashing, logout, and role-based access.
-- Vehicle management API with pagination, filters, sorting, create, update, and delete operations.
-- Executive dashboard API with vehicle KPIs and chart-ready aggregation data.
-- React, TypeScript, Tailwind, TanStack Query, Axios, and Recharts frontend.
-- Professional dark administrative layout with sidebar, header, breadcrumb, dashboard, vehicle table, modals, pagination, skeletons, empty states, and toast notifications.
-- Docker Compose stack for PostgreSQL, backend, and frontend.
-- Swagger/OpenAPI documentation with bearer JWT support.
-- GitHub Actions workflow for backend and frontend validation.
+- API REST Spring Boot com PostgreSQL, migrations Flyway, validacao JPA e tratamento padronizado de erros.
+- Autenticacao JWT com refresh tokens, hash de senha BCrypt, logout e acesso baseado em roles.
+- API de gestao de veiculos com paginacao, filtros, ordenacao, criacao, atualizacao e exclusao.
+- API de dashboard executivo com KPIs de veiculos e dados agregados prontos para graficos.
+- Frontend com React, TypeScript, Tailwind, TanStack Query, Axios e Recharts.
+- Layout administrativo dark com sidebar, header, breadcrumb, dashboard, tabela de veiculos, modais, paginacao, skeletons, estados vazios e toasts.
+- Stack Docker Compose para PostgreSQL, backend e frontend.
+- Documentacao Swagger/OpenAPI com suporte a bearer JWT.
+- Workflow GitHub Actions para validacao de backend e frontend.

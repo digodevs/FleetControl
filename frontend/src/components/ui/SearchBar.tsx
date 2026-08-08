@@ -6,7 +6,7 @@ interface SearchBarProps {
   onChange: (value: string) => void;
 }
 
-export function SearchBar({ value, placeholder = 'Search', onChange }: SearchBarProps) {
+export function SearchBar({ value, placeholder = 'Pesquisar', onChange }: SearchBarProps) {
   return (
     <label className="relative block min-w-0 flex-1">
       <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={17} aria-hidden="true" />
@@ -19,4 +19,3 @@ export function SearchBar({ value, placeholder = 'Search', onChange }: SearchBar
     </label>
   );
 }
-

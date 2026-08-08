@@ -29,17 +29,17 @@ public class GlobalExceptionHandler {
             fieldErrors.put(fieldError.getField(), fieldError.getDefaultMessage());
         }
 
-        return buildResponse(HttpStatus.BAD_REQUEST, "Validation failed.", request, fieldErrors);
+        return buildResponse(HttpStatus.BAD_REQUEST, "Falha de validacao.", request, fieldErrors);
     }
 
     @ExceptionHandler({AccessDeniedException.class, AuthorizationDeniedException.class})
     ResponseEntity<ErrorResponse> handleAccessDenied(Exception exception, HttpServletRequest request) {
-        return buildResponse(HttpStatus.FORBIDDEN, "Access is denied.", request, Map.of());
+        return buildResponse(HttpStatus.FORBIDDEN, "Acesso negado.", request, Map.of());
     }
 
     @ExceptionHandler(Exception.class)
     ResponseEntity<ErrorResponse> handleUnexpected(Exception exception, HttpServletRequest request) {
-        return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, "Unexpected server error.", request, Map.of());
+        return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, "Erro inesperado no servidor.", request, Map.of());
     }
 
     private ResponseEntity<ErrorResponse> buildResponse(

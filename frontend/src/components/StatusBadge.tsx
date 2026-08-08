@@ -2,10 +2,10 @@ import { Badge } from './ui/Badge';
 import type { VehicleStatus } from '../types/vehicle';
 
 const labels: Record<VehicleStatus, string> = {
-  AVAILABLE: 'Available',
-  IN_USE: 'In use',
-  MAINTENANCE: 'Maintenance',
-  INACTIVE: 'Inactive',
+  AVAILABLE: 'Disponivel',
+  IN_USE: 'Em uso',
+  MAINTENANCE: 'Em manutencao',
+  INACTIVE: 'Inativo',
 };
 
 const tones: Record<VehicleStatus, 'green' | 'blue' | 'amber' | 'red'> = {
@@ -18,4 +18,3 @@ const tones: Record<VehicleStatus, 'green' | 'blue' | 'amber' | 'red'> = {
 export function StatusBadge({ status }: { status: VehicleStatus }) {
   return <Badge tone={tones[status]}>{labels[status]}</Badge>;
 }
-

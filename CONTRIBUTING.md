@@ -1,16 +1,16 @@
-# Contributing
+# Contribuindo
 
-Thank you for your interest in FleetControl.
+Obrigado pelo interesse no FleetControl.
 
-## Development Workflow
+## Fluxo De Desenvolvimento
 
-1. Fork the repository.
-2. Create a branch from `main`.
-3. Keep changes focused and aligned with the current roadmap.
-4. Run the required checks before opening a pull request.
-5. Open a pull request with a clear summary and validation notes.
+1. Faca um fork do repositorio.
+2. Crie uma branch a partir da `main`.
+3. Mantenha as alteracoes focadas e alinhadas ao roadmap atual.
+4. Execute as verificacoes obrigatorias antes de abrir um pull request.
+5. Abra um pull request com resumo claro e notas de validacao.
 
-## Required Checks
+## Verificacoes Obrigatorias
 
 Backend:
 
@@ -34,20 +34,20 @@ Docker:
 docker compose up --build
 ```
 
-## Code Standards
+## Padroes De Codigo
 
-- Do not commit real secrets or local credentials.
-- Prefer DTOs over exposing entities in API responses.
-- Keep Flyway responsible for schema evolution.
-- Keep frontend API access inside services and hooks.
-- Avoid adding modules outside the approved roadmap.
-- Add or update tests for behavior changes.
+- Nao versione segredos reais ou credenciais locais.
+- Prefira DTOs em vez de expor entidades nas respostas da API.
+- Mantenha o Flyway responsavel pela evolucao do schema.
+- Mantenha o acesso a API no frontend dentro de services e hooks.
+- Evite adicionar modulos fora do roadmap aprovado.
+- Adicione ou atualize testes para mudancas de comportamento.
 
-## Pull Request Guidelines
+## Diretrizes De Pull Request
 
-Include:
+Inclua:
 
-- What changed.
-- Why it changed.
-- How it was tested.
-- Screenshots for frontend changes when applicable.
+- O que mudou.
+- Por que mudou.
+- Como foi testado.
+- Screenshots para mudancas no frontend quando aplicavel.

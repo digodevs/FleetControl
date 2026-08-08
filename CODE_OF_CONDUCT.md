@@ -1,25 +1,25 @@
-# Code of Conduct
+# Codigo De Conduta
 
-## Our Pledge
+## Nosso Compromisso
 
-Contributors and maintainers are expected to keep this project respectful, professional, and welcoming.
+Contribuidores e mantenedores devem manter este projeto respeitoso, profissional e receptivo.
 
-## Standards
+## Padroes
 
-Examples of expected behavior:
+Exemplos de comportamento esperado:
 
-- Use clear and respectful language.
-- Accept constructive feedback.
-- Focus discussions on the project and technical outcomes.
-- Respect different levels of experience.
+- Usar linguagem clara e respeitosa.
+- Aceitar feedback construtivo.
+- Manter discussoes focadas no projeto e em resultados tecnicos.
+- Respeitar diferentes niveis de experiencia.
 
-Examples of unacceptable behavior:
+Exemplos de comportamento inaceitavel:
 
-- Harassment, insults, or discriminatory language.
-- Personal attacks.
-- Publishing private information without permission.
-- Disruptive or bad-faith participation.
+- Assedio, insultos ou linguagem discriminatoria.
+- Ataques pessoais.
+- Publicacao de informacoes privadas sem permissao.
+- Participacao disruptiva ou de ma-fe.
 
-## Enforcement
+## Aplicacao
 
-Maintainers may remove comments, reject contributions, or restrict participation when behavior does not meet these standards.
+Mantenedores podem remover comentarios, rejeitar contribuicoes ou restringir participacao quando o comportamento nao atender a estes padroes.
