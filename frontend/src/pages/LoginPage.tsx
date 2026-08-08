@@ -8,8 +8,12 @@ import { login, register } from '../services/authApi';
 
 type AuthMode = 'login' | 'register';
 
-export function LoginPage() {
-  const [mode, setMode] = useState<AuthMode>('login');
+interface LoginPageProps {
+  initialMode?: AuthMode;
+}
+
+export function LoginPage({ initialMode = 'login' }: LoginPageProps) {
+  const [mode, setMode] = useState<AuthMode>(initialMode);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
