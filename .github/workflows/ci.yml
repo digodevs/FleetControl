@@ -12,6 +12,28 @@ jobs:
   backend:
     name: Backend
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_DB: fleetcontrol
+          POSTGRES_USER: fleetcontrol
+          POSTGRES_PASSWORD: change_me_local_password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U fleetcontrol -d fleetcontrol"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      SPRING_PROFILES_ACTIVE: test
+      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/fleetcontrol
+      SPRING_DATASOURCE_USERNAME: fleetcontrol
+      SPRING_DATASOURCE_PASSWORD: change_me_local_password
+      JWT_SECRET: test_secret_for_fleetcontrol_with_32_bytes_minimum
+      JWT_ACCESS_EXPIRATION: 900000
+      JWT_REFRESH_EXPIRATION: 604800000
 
     steps:
       - name: Checkout
