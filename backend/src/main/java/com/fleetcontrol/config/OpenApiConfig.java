@@ -25,6 +25,6 @@ public class OpenApiConfig {
                 .info(new Info()
                         .title("FleetControl API")
                         .version("v1")
-                        .description("API REST do sistema de gestao de frota FleetControl."));
+                        .description("API REST do sistema de gestão de frota FleetControl."));
     }
 }

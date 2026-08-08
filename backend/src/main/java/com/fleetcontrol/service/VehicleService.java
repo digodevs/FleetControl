@@ -77,7 +77,7 @@ public class VehicleService {
         Long mileage = validateNonNegativeMileage(request.mileage());
 
         if (mileage < vehicle.getMileage()) {
-            throw new InvalidMileageException("A quilometragem nao pode ser menor que o valor atual.");
+            throw new InvalidMileageException("A quilometragem não pode ser menor que o valor atual.");
         }
 
         vehicle.setLicensePlate(normalizeLicensePlate(request.licensePlate()));
@@ -156,7 +156,7 @@ public class VehicleService {
 
     private Long validateNonNegativeMileage(Long mileage) {
         if (mileage == null || mileage < 0) {
-            throw new InvalidMileageException("A quilometragem nao pode ser negativa.");
+            throw new InvalidMileageException("A quilometragem não pode ser negativa.");
         }
         return mileage;
     }

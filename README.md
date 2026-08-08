@@ -1,37 +1,37 @@
 # FleetControl
 
-![Versao](https://img.shields.io/badge/versao-1.0.0-0ea5e9)
+![Versão](https://img.shields.io/badge/versão-1.0.0-0ea5e9)
 ![Java](https://img.shields.io/badge/Java-25-red)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5-green)
 ![React](https://img.shields.io/badge/React-19-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17-336791)
 ![Docker](https://img.shields.io/badge/Docker-pronto-2496ed)
-![Licenca](https://img.shields.io/badge/licenca-MIT-white)
+![Licença](https://img.shields.io/badge/licenca-MIT-white)
 
-FleetControl e um sistema profissional de gestao de frotas desenvolvido como projeto full-stack de portfolio para GitHub. A versao `v1.0.0` entrega uma API Spring Boot segura, banco PostgreSQL com migrations Flyway, autenticacao JWT, gestao de veiculos, painel executivo e interface administrativa responsiva em React.
+FleetControl é um sistema profissional de gestão de frotas desenvolvido como projeto full-stack de portfolio para GitHub. A versão `v1.0.0` entrega uma API Spring Boot segura, banco PostgreSQL com migrations Flyway, autenticação JWT, gestão de veículos, painel executivo e interface administrativa responsiva em React.
 
 ## Objetivo
 
-Fornecer uma base limpa e orientada a producao para operacoes de frota, com persistencia real em banco de dados, documentacao de API, validacoes automatizadas, execucao com Docker e frontend refinado para apresentacao profissional no GitHub.
+Fornecer uma base limpa e orientada a produção para operações de frota, com persistencia real em banco de dados, documentação de API, validações automatizadas, execução com Docker e frontend refinado para apresentação profissional no GitHub.
 
 ## Capturas De Tela
 
-As imagens devem ser adicionadas depois da publicacao dos assets do repositorio.
+As imagens devem ser adicionadas depois da publicação dos assets do repositorio.
 
-| Painel | Veiculos |
+| Painel | Veículos |
 | --- | --- |
 | `docs/screenshots/dashboard.png` | `docs/screenshots/vehicles.png` |
 
 ## Arquitetura
 
-FleetControl esta organizado como monorepo:
+FleetControl está organizado como monorepo:
 
 ```text
 .
 |-- backend/                 # API REST Spring Boot
 |-- frontend/                # SPA React + TypeScript
-|-- docs/                    # Documentacao e screenshots
+|-- docs/                    # Documentação e screenshots
 |-- docker-compose.yml       # PostgreSQL + backend + frontend
 |-- .env.example             # Referencia de variaveis de ambiente
 `-- README.md
@@ -40,14 +40,14 @@ FleetControl esta organizado como monorepo:
 Camadas do backend:
 
 ```text
-config        OpenAPI, seguranca e configuracao da aplicacao
+config        OpenAPI, seguranca e configuração da aplicação
 controller    Endpoints REST
-dto           Contratos de requisicao e resposta
+dto           Contratos de requisição e resposta
 entity        Entidades JPA e enums
-exception     Tratamento de excecoes de dominio e API
+exception     Tratamento de exceções de domínio e API
 mapper        Mapeamento entre entidade e DTO
-repository    Repositorios Spring Data e consultas otimizadas
-security      Filtro JWT, servico de token e detalhes do usuario
+repository    Repositórios Spring Data e consultas otimizadas
+security      Filtro JWT, servico de token e detalhes do usuário
 service       Casos de uso de negocio
 ```
 
@@ -55,10 +55,10 @@ Camadas do frontend:
 
 ```text
 components    Componentes reutilizaveis de UI e features
-contexts      Estado de autenticacao e notificacoes
+contexts      Estado de autenticação e notificações
 hooks         Hooks de UI e TanStack Query
 layouts       Estrutura administrativa
-pages         Telas de dashboard e veiculos
+pages         Telas de dashboard e veículos
 services      Clientes Axios para API
 types         Contratos TypeScript compartilhados
 ```
@@ -97,16 +97,16 @@ Infraestrutura:
 - Docker
 - Docker Compose
 - Nginx
-- Acoes do GitHub
+- Ações do GitHub
 
 ## Funcionalidades
 
-- Login JWT, token de renovacao, logout e endpoint de usuario autenticado.
+- Login JWT, token de renovação, logout e endpoint de usuário autenticado.
 - Controle de acesso por roles `ADMIN` e `EMPLOYEE`.
-- CRUD de veiculos com validacao, paginacao, filtros, ordenacao e verificacao de duplicidade.
+- CRUD de veículos com validação, paginação, filtros, ordenação e verificação de duplicidade.
 - Painel executivo com dados reais do PostgreSQL.
 - Swagger/OpenAPI com suporte a bearer JWT.
-- UI administrativa dark com sidebar, header, breadcrumb, graficos, tabela de veiculos, modais, paginacao, skeletons, estados vazios e toasts.
+- UI administrativa dark com sidebar, header, breadcrumb, gráficos, tabela de veículos, modais, paginação, skeletons, estados vazios e toasts.
 - Stack Dockerizada com PostgreSQL, backend e frontend.
 
 ## Variaveis De Ambiente
@@ -117,29 +117,29 @@ Copie o arquivo de exemplo e ajuste os valores locais:
 cp .env.example .env
 ```
 
-Variaveis obrigatorias:
+Variaveis obrigatórias:
 
-| Variavel | Descricao |
+| Variável | Descrição |
 | --- | --- |
 | `POSTGRES_DB` | Nome do banco PostgreSQL |
-| `POSTGRES_USER` | Usuario do PostgreSQL |
+| `POSTGRES_USER` | Usuário do PostgreSQL |
 | `POSTGRES_PASSWORD` | Senha do PostgreSQL |
 | `POSTGRES_PORT` | Porta do PostgreSQL no host |
-| `BACKEND_PORT` | Porta da aplicacao backend |
+| `BACKEND_PORT` | Porta da aplicação backend |
 | `SPRING_PROFILES_ACTIVE` | Profile Spring, normalmente `dev` |
-| `SPRING_DATASOURCE_URL` | URL JDBC para execucao local do backend |
-| `SPRING_DATASOURCE_USERNAME` | Usuario do banco usado pelo backend |
+| `SPRING_DATASOURCE_URL` | URL JDBC para execução local do backend |
+| `SPRING_DATASOURCE_USERNAME` | Usuário do banco usado pelo backend |
 | `SPRING_DATASOURCE_PASSWORD` | Senha do banco usada pelo backend |
 | `APP_CORS_ALLOWED_ORIGINS` | Origens permitidas do frontend |
 | `JWT_SECRET` | Segredo JWT forte com pelo menos 32 bytes |
-| `JWT_ACCESS_EXPIRATION` | Duracao do token de acesso em milissegundos |
-| `JWT_REFRESH_EXPIRATION` | Duracao do token de renovacao em milissegundos |
+| `JWT_ACCESS_EXPIRATION` | Duração do token de acesso em milissegundos |
+| `JWT_REFRESH_EXPIRATION` | Duração do token de renovação em milissegundos |
 | `FRONTEND_PORT` | Porta do container frontend no host |
-| `VITE_API_BASE_URL` | URL base publica da API usada na compilacao do frontend |
+| `VITE_API_BASE_URL` | URL base publica da API usada na compilação do frontend |
 
-Nunca versione segredos reais, senhas de producao ou arquivos `.env` privados.
+Nunca versione segredos reais, senhas de produção ou arquivos `.env` privados.
 
-## Execucao Local
+## Execução Local
 
 Requisitos:
 
@@ -175,14 +175,14 @@ npm install
 npm run dev
 ```
 
-URLs padrao:
+URLs padrão:
 
 - Frontend: `http://localhost:5173`
 - Backend API: `http://localhost:8080/api`
 - Swagger UI: `http://localhost:8080/api/swagger-ui.html`
 - OpenAPI JSON: `http://localhost:8080/api/v3/api-docs`
 
-## Execucao Com Docker
+## Execução Com Docker
 
 Build e subida da stack completa:
 
@@ -216,7 +216,7 @@ Servicos Docker:
 
 ## Banco De Dados
 
-O Flyway e responsavel pela criacao e versionamento do schema. O Hibernate esta configurado com `ddl-auto=validate`, portanto a aplicacao valida o schema em vez de gera-lo.
+O Flyway é responsável pela criação e versionamento do schema. O Hibernate está configurado com `ddl-auto=validate`, portanto a aplicação valida o schema em vez de gerá-lo.
 
 Migrations atuais:
 
@@ -224,19 +224,19 @@ Migrations atuais:
 - `V2__create_authentication_tables.sql`
 - `V3__create_vehicle_table.sql`
 
-## Autenticacao
+## Autenticação
 
-A autenticacao usa tokens de acesso JWT e tokens de renovacao.
+A autenticação usa tokens de acesso JWT e tokens de renovação.
 
 Endpoints principais:
 
-| Metodo | Endpoint | Descricao |
+| Método | Endpoint | Descrição |
 | --- | --- | --- |
-| `POST` | `/api/auth/register` | Cadastrar usuario |
+| `POST` | `/api/auth/register` | Cadastrar usuário |
 | `POST` | `/api/auth/login` | Login |
 | `POST` | `/api/auth/refresh` | Renovar token de acesso |
 | `POST` | `/api/auth/logout` | Logout |
-| `GET` | `/api/auth/me` | Usuario autenticado atual |
+| `GET` | `/api/auth/me` | Usuário autenticado atual |
 
 Endpoints protegidos exigem:
 
@@ -244,13 +244,13 @@ Endpoints protegidos exigem:
 Authorization: Bearer <access-token>
 ```
 
-## Modulos Da API
+## Módulos Da API
 
 | Modulo | Endpoint | Acesso |
 | --- | --- | --- |
 | Dashboard | `GET /api/dashboard` | `ADMIN`, `EMPLOYEE` |
-| Veiculos | `/api/vehicles` | leitura: `ADMIN`, `EMPLOYEE`; escrita: `ADMIN` |
-| Auth | `/api/auth/*` | fluxos publicos e autenticados |
+| Veículos | `/api/vehicles` | leitura: `ADMIN`, `EMPLOYEE`; escrita: `ADMIN` |
+| Auth | `/api/auth/*` | fluxos públicos e autenticados |
 
 ## Swagger / OpenAPI
 
@@ -262,7 +262,7 @@ http://localhost:8080/api/swagger-ui.html
 
 Use o botao `Autorizar` do Swagger e cole um token de acesso JWT para testar endpoints protegidos.
 
-## Verificacoes De Qualidade
+## Verificações De Qualidade
 
 Backend:
 
@@ -294,34 +294,34 @@ Docker:
 docker compose up --build
 ```
 
-## Integracao E Entrega Continua
+## Integração E Entrega Continua
 
-As Acoes do GitHub executam em `push` e `pull_request` para `main`.
+As Ações do GitHub executam em `push` e `pull_request` para `main`.
 
 O workflow valida:
 
 - Testes do backend com Java 25 e Maven Wrapper.
 - Package do backend.
-- Instalacao de dependencias do frontend.
-- Build de producao do frontend com Node LTS.
+- Instalação de dependências do frontend.
+- Build de produção do frontend com Node LTS.
 
-## Proximas Etapas
+## Próximas Etapas
 
-Modulos planejados para etapas futuras:
+Módulos planejados para etapas futuras:
 
 - Motoristas
-- Manutencoes
+- Manutenções
 - Abastecimentos
 - Despesas
 - Multas
 - Documentos
-- Relatorios avancados
+- Relatórios avançados
 - Profiles de deploy
 - Testes end-to-end
 
-## Licenca
+## Licença
 
-Este projeto esta licenciado sob a Licenca MIT. Consulte `LICENSE`.
+Este projeto está licenciado sob a Licença MIT. Consulte `LICENSE`.
 
 ## Autor
 

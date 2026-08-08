@@ -52,7 +52,7 @@ class DashboardIntegrationTests {
     void dashboardRequiresAuthentication() throws Exception {
         mockMvc.perform(get("/dashboard"))
                 .andExpect(status().isUnauthorized())
-                .andExpect(jsonPath("$.message").value("Autenticacao obrigatoria."));
+                .andExpect(jsonPath("$.message").value("Autenticação obrigatória."));
     }
 
     @Test

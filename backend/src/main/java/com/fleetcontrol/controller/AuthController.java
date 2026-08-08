@@ -29,13 +29,13 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @Operation(summary = "Cadastrar novo usuario")
+    @Operation(summary = "Cadastrar novo usuário")
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(@Valid @RequestBody RegisterRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(authService.register(request));
     }
 
-    @Operation(summary = "Autenticar usuario")
+    @Operation(summary = "Autenticar usuário")
     @PostMapping("/login")
     public AuthResponse login(@Valid @RequestBody LoginRequest request) {
         return authService.login(request);
@@ -54,7 +54,7 @@ public class AuthController {
         return ResponseEntity.noContent().build();
     }
 
-    @Operation(summary = "Obter usuario autenticado", security = @SecurityRequirement(name = "bearerAuth"))
+    @Operation(summary = "Obter usuário autenticado", security = @SecurityRequirement(name = "bearerAuth"))
     @GetMapping("/me")
     public UserResponse me(@AuthenticationPrincipal AuthenticatedUser authenticatedUser) {
         return authService.me(authenticatedUser);

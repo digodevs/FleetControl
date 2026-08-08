@@ -75,7 +75,7 @@ class VehicleIntegrationTests {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json(vehiclePayload("ABC-1D23", 1400L, "AVAILABLE"))))
                 .andExpect(status().isConflict())
-                .andExpect(jsonPath("$.message").value("Placa ja esta cadastrada."));
+                .andExpect(jsonPath("$.message").value("Placa já está cadastrada."));
     }
 
     @Test
@@ -97,7 +97,7 @@ class VehicleIntegrationTests {
         mockMvc.perform(get("/vehicles/{id}", "11111111-1111-1111-1111-111111111111")
                         .header(HttpHeaders.AUTHORIZATION, bearer(adminToken)))
                 .andExpect(status().isNotFound())
-                .andExpect(jsonPath("$.message").value("Veiculo nao encontrado."));
+                .andExpect(jsonPath("$.message").value("Veículo não encontrado."));
     }
 
     @Test
@@ -127,7 +127,7 @@ class VehicleIntegrationTests {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json(vehiclePayload("MIL1D23", 100L, "AVAILABLE"))))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.message").value("A quilometragem nao pode ser menor que o valor atual."));
+                .andExpect(jsonPath("$.message").value("A quilometragem não pode ser menor que o valor atual."));
     }
 
     @Test
@@ -173,7 +173,7 @@ class VehicleIntegrationTests {
     void requestWithoutJwtIsRejected() throws Exception {
         mockMvc.perform(get("/vehicles"))
                 .andExpect(status().isUnauthorized())
-                .andExpect(jsonPath("$.message").value("Autenticacao obrigatoria."));
+                .andExpect(jsonPath("$.message").value("Autenticação obrigatória."));
     }
 
     @Test

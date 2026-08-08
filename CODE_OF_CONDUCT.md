@@ -1,4 +1,4 @@
-# Codigo De Conduta
+# Código De Conduta
 
 ## Nosso Compromisso
 
@@ -10,16 +10,16 @@ Exemplos de comportamento esperado:
 
 - Usar linguagem clara e respeitosa.
 - Aceitar feedback construtivo.
-- Manter discussoes focadas no projeto e em resultados tecnicos.
-- Respeitar diferentes niveis de experiencia.
+- Manter discussões focadas no projeto e em resultados técnicos.
+- Respeitar diferentes níveis de experiência.
 
-Exemplos de comportamento inaceitavel:
+Exemplos de comportamento inaceitável:
 
 - Assedio, insultos ou linguagem discriminatoria.
 - Ataques pessoais.
-- Publicacao de informacoes privadas sem permissao.
-- Participacao disruptiva ou de ma-fe.
+- Publicação de informações privadas sem permissão.
+- Participação disruptiva ou de ma-fe.
 
-## Aplicacao
+## Aplicação
 
-Mantenedores podem remover comentarios, rejeitar contribuicoes ou restringir participacao quando o comportamento nao atender a estes padroes.
+Mantenedores podem remover comentários, rejeitar contribuições ou restringir participação quando o comportamento não atender a estes padrões.

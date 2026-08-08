@@ -32,7 +32,7 @@ public class JsonAuthenticationEntryPoint implements AuthenticationEntryPoint {
                 OffsetDateTime.now(),
                 HttpStatus.UNAUTHORIZED.value(),
                 HttpStatus.UNAUTHORIZED.getReasonPhrase(),
-                "Autenticacao obrigatoria.",
+                "Autenticação obrigatória.",
                 request.getRequestURI(),
                 Map.of()
         );

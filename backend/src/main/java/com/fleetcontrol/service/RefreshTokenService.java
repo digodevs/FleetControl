@@ -52,7 +52,7 @@ public class RefreshTokenService {
         }
 
         if (!refreshToken.getUser().isEnabled()) {
-            throw new InvalidTokenException("A conta do usuario esta desativada.");
+            throw new InvalidTokenException("A conta do usuário está desativada.");
         }
 
         return refreshToken;

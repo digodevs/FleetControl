@@ -38,14 +38,14 @@ public class VehicleController {
         this.vehicleService = vehicleService;
     }
 
-    @Operation(summary = "Criar veiculo", description = "Somente ADMIN. Cria um veiculo da frota com placa, RENAVAM e chassi unicos.")
+    @Operation(summary = "Criar veículo", description = "Somente ADMIN. Cria um veículo da frota com placa, RENAVAM e chassi únicos.")
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<VehicleResponse> create(@Valid @RequestBody VehicleCreateRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(vehicleService.create(request));
     }
 
-    @Operation(summary = "Listar veiculos", description = "ADMIN e EMPLOYEE. Suporta paginacao, ordenacao, filtros por status/tipo e busca por placa, marca ou modelo.")
+    @Operation(summary = "Listar veículos", description = "ADMIN e EMPLOYEE. Suporta paginação, ordenação, filtros por status/tipo e busca por placa, marca ou modelo.")
     @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE')")
     @GetMapping
     public Page<VehicleResponse> list(
@@ -57,21 +57,21 @@ public class VehicleController {
         return vehicleService.list(status, type, search, pageable);
     }
 
-    @Operation(summary = "Buscar veiculo por id", description = "ADMIN e EMPLOYEE.")
+    @Operation(summary = "Buscar veículo por id", description = "ADMIN e EMPLOYEE.")
     @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE')")
     @GetMapping("/{id}")
     public VehicleResponse findById(@PathVariable UUID id) {
         return vehicleService.findById(id);
     }
 
-    @Operation(summary = "Atualizar veiculo", description = "Somente ADMIN. A quilometragem nao pode ser reduzida.")
+    @Operation(summary = "Atualizar veículo", description = "Somente ADMIN. A quilometragem não pode ser reduzida.")
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public VehicleResponse update(@PathVariable UUID id, @Valid @RequestBody VehicleUpdateRequest request) {
         return vehicleService.update(id, request);
     }
 
-    @Operation(summary = "Desativar veiculo", description = "Somente ADMIN. Executa exclusao logica definindo o status como INACTIVE.")
+    @Operation(summary = "Desativar veículo", description = "Somente ADMIN. Executa exclusão lógica definindo o status como INACTIVE.")
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable UUID id) {

@@ -6,18 +6,18 @@ import { Button } from '../components/ui/Button';
 
 const navigation = [
   { label: 'Dashboard', href: '/dashboard', icon: BarChart3 },
-  { label: 'Veiculos', href: '/vehicles', icon: Car },
-  { label: 'Usuarios', href: '/users', icon: Users },
+  { label: 'Veículos', href: '/vehicles', icon: Car },
+  { label: 'Usuários', href: '/users', icon: Users },
   { label: 'Perfil', href: '/profile', icon: User },
-  { label: 'Configuracoes', href: '/settings', icon: Settings },
+  { label: 'Configurações', href: '/settings', icon: Settings },
 ];
 
 const pageTitles: Record<string, string> = {
   '/dashboard': 'Dashboard',
-  '/vehicles': 'Veiculos',
-  '/users': 'Usuarios',
+  '/vehicles': 'Veículos',
+  '/users': 'Usuários',
   '/profile': 'Perfil',
-  '/settings': 'Configuracoes',
+  '/settings': 'Configurações',
 };
 
 const roleLabels: Record<string, string> = {
@@ -76,7 +76,7 @@ export function AppLayout() {
 
             <div className="flex min-w-0 items-center gap-3">
               <div className="hidden min-w-0 text-right sm:block">
-                <p className="truncate text-sm font-medium text-white">{isLoading ? 'Carregando usuario' : user?.name ?? 'Usuario nao autenticado'}</p>
+                <p className="truncate text-sm font-medium text-white">{isLoading ? 'Carregando usuário' : user?.name ?? 'Usuário não autenticado'}</p>
                 <p className="truncate text-xs text-slate-400">{userRole}</p>
               </div>
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded bg-accent-500 text-sm font-semibold text-surface-950">{initials}</div>
@@ -120,7 +120,7 @@ function Sidebar({
             {!collapsed ? (
               <div className="min-w-0">
                 <p className="truncate text-sm font-semibold uppercase tracking-wide text-accent-400">FleetControl</p>
-                <p className="truncate text-xs text-slate-400">Operacoes de frota</p>
+                <p className="truncate text-xs text-slate-400">Operações de frota</p>
               </div>
             ) : null}
           </Link>

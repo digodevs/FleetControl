@@ -20,7 +20,7 @@ public class DashboardController {
         this.dashboardService = dashboardService;
     }
 
-    @Operation(summary = "Obter dashboard executivo", description = "Retorna indicadores consolidados da frota e series para graficos.")
+    @Operation(summary = "Obter dashboard executivo", description = "Retorna indicadores consolidados da frota e series para gráficos.")
     @PreAuthorize("hasAnyRole('ADMIN', 'EMPLOYEE')")
     @GetMapping
     public DashboardResponse getDashboard() {

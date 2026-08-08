@@ -2,9 +2,9 @@ import { Badge } from './ui/Badge';
 import type { VehicleStatus } from '../types/vehicle';
 
 const labels: Record<VehicleStatus, string> = {
-  AVAILABLE: 'Disponivel',
+  AVAILABLE: 'Disponível',
   IN_USE: 'Em uso',
-  MAINTENANCE: 'Em manutencao',
+  MAINTENANCE: 'Em manutenção',
   INACTIVE: 'Inativo',
 };
 

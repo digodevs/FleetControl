@@ -17,9 +17,9 @@ import { useCreateVehicle, useDeleteVehicle, useUpdateVehicle, useVehicles } fro
 import type { FuelType, Vehicle, VehiclePayload, VehicleStatus, VehicleType } from '../types/vehicle';
 
 const statusOptions: Array<{ value: VehicleStatus; label: string }> = [
-  { value: 'AVAILABLE', label: 'Disponivel' },
+  { value: 'AVAILABLE', label: 'Disponível' },
   { value: 'IN_USE', label: 'Em uso' },
-  { value: 'MAINTENANCE', label: 'Em manutencao' },
+  { value: 'MAINTENANCE', label: 'Em manutenção' },
   { value: 'INACTIVE', label: 'Inativo' },
 ];
 
@@ -27,8 +27,8 @@ const typeOptions: Array<{ value: VehicleType; label: string }> = [
   { value: 'CAR', label: 'Carro' },
   { value: 'MOTORCYCLE', label: 'Moto' },
   { value: 'VAN', label: 'Van' },
-  { value: 'TRUCK', label: 'Caminhao' },
-  { value: 'BUS', label: 'Onibus' },
+  { value: 'TRUCK', label: 'Caminhão' },
+  { value: 'BUS', label: 'Ônibus' },
   { value: 'OTHER', label: 'Outro' },
 ];
 
@@ -37,8 +37,8 @@ const fuelOptions: Array<{ value: FuelType; label: string }> = [
   { value: 'ETHANOL', label: 'Etanol' },
   { value: 'FLEX', label: 'Flex' },
   { value: 'DIESEL', label: 'Diesel' },
-  { value: 'ELECTRIC', label: 'Eletrico' },
-  { value: 'HYBRID', label: 'Hibrido' },
+  { value: 'ELECTRIC', label: 'Elétrico' },
+  { value: 'HYBRID', label: 'Híbrido' },
   { value: 'OTHER', label: 'Outro' },
 ];
 
@@ -129,7 +129,7 @@ export function VehiclesPage() {
     event.preventDefault();
 
     if (!form.licensePlate.trim() || !form.brand.trim() || !form.model.trim()) {
-      showToast('Placa, marca e modelo sao obrigatorios.', 'error');
+      showToast('Placa, marca e modelo são obrigatórios.', 'error');
       return;
     }
 
@@ -148,14 +148,14 @@ export function VehiclesPage() {
     try {
       if (editingVehicle) {
         await updateVehicle.mutateAsync({ id: editingVehicle.id, payload });
-        showToast('Veiculo atualizado com sucesso.', 'success');
+        showToast('Veículo atualizado com sucesso.', 'success');
       } else {
         await createVehicle.mutateAsync(payload);
-        showToast('Veiculo criado com sucesso.', 'success');
+        showToast('Veículo criado com sucesso.', 'success');
       }
       setFormOpen(false);
     } catch {
-      showToast('Nao foi possivel salvar o veiculo. Confira os campos e tente novamente.', 'error');
+      showToast('Não foi possível salvar o veículo. Confira os campos e tente novamente.', 'error');
     }
   }
 
@@ -166,22 +166,22 @@ export function VehiclesPage() {
 
     try {
       await deleteVehicle.mutateAsync(vehicleToDelete.id);
-      showToast('Veiculo excluido com sucesso.', 'success');
+      showToast('Veículo excluído com sucesso.', 'success');
       setVehicleToDelete(null);
     } catch {
-      showToast('Nao foi possivel excluir o veiculo.', 'error');
+      showToast('Não foi possível excluir o veículo.', 'error');
     }
   }
 
   return (
     <section className="space-y-6">
       <PageHeader
-        title="Veiculos"
+        title="Veículos"
         description="Gerencie os registros da frota com dados em tempo real da API."
         actions={
           canManageVehicles ? (
             <Button onClick={openCreateModal} icon={<Plus size={18} />}>
-              Novo veiculo
+              Novo veículo
             </Button>
           ) : null
         }
@@ -227,7 +227,7 @@ export function VehiclesPage() {
               </option>
             ))}
           </Select>
-          <Select value={sort} onChange={(event) => setSort(event.target.value)} aria-label="Ordenar veiculos">
+          <Select value={sort} onChange={(event) => setSort(event.target.value)} aria-label="Ordenar veículos">
             {sortableColumns.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
@@ -243,7 +243,7 @@ export function VehiclesPage() {
       <Card className="overflow-hidden">
         <div className="flex items-center justify-between border-b border-slate-800 px-4 py-3">
           <div>
-            <h2 className="text-sm font-semibold text-white">Inventario da frota</h2>
+            <h2 className="text-sm font-semibold text-white">Inventário da frota</h2>
             <p className="text-xs text-slate-400">{vehiclesQuery.data?.totalElements ?? 0} registros encontrados</p>
           </div>
           <ArrowUpDown size={18} className="text-slate-500" aria-hidden="true" />
@@ -253,13 +253,13 @@ export function VehiclesPage() {
           <Table>
             <thead className="bg-surface-900">
               <tr>
-                <Th>Veiculo</Th>
+                <Th>Veículo</Th>
                 <Th>Tipo</Th>
                 <Th>Status</Th>
-                <Th>Combustivel</Th>
+                <Th>Combustível</Th>
                 <Th>Ano</Th>
                 <Th>Quilometragem</Th>
-                <Th className="text-right">Acoes</Th>
+                <Th className="text-right">Ações</Th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-800">
@@ -321,8 +321,8 @@ export function VehiclesPage() {
 
       <Modal
         open={formOpen}
-        title={editingVehicle ? 'Editar veiculo' : 'Novo veiculo'}
-        description="Mantenha o registro operacional correto para relatorios e controles de disponibilidade."
+        title={editingVehicle ? 'Editar veículo' : 'Novo veículo'}
+        description="Mantenha o registro operacional correto para relatórios e controles de disponibilidade."
         onClose={() => setFormOpen(false)}
         footer={
           <>
@@ -330,7 +330,7 @@ export function VehiclesPage() {
               Cancelar
             </Button>
             <Button type="submit" form="vehicle-form" disabled={createVehicle.isPending || updateVehicle.isPending}>
-              {editingVehicle ? 'Salvar alteracoes' : 'Criar veiculo'}
+              {editingVehicle ? 'Salvar alterações' : 'Criar veículo'}
             </Button>
           </>
         }
@@ -340,8 +340,8 @@ export function VehiclesPage() {
 
       <Modal
         open={Boolean(vehicleToDelete)}
-        title="Excluir veiculo"
-        description="Esta acao nao pode ser desfeita."
+        title="Excluir veículo"
+        description="Esta ação não pode ser desfeita."
         onClose={() => setVehicleToDelete(null)}
         footer={
           <>
@@ -355,7 +355,7 @@ export function VehiclesPage() {
         }
       >
         <p className="text-sm text-slate-300">
-          Confirme a exclusao de <span className="font-semibold text-white">{vehicleToDelete?.licensePlate}</span>.
+          Confirme a exclusão de <span className="font-semibold text-white">{vehicleToDelete?.licensePlate}</span>.
         </p>
       </Modal>
     </section>
@@ -388,7 +388,7 @@ function VehicleForm({
           </option>
         ))}
       </Select>
-      <Select label="Combustivel" value={form.fuelType} onChange={(event) => updateField('fuelType', event.target.value as FuelType)}>
+      <Select label="Combustível" value={form.fuelType} onChange={(event) => updateField('fuelType', event.target.value as FuelType)}>
         {fuelOptions.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}
@@ -431,8 +431,8 @@ function ErrorRow({ onRetry }: { onRetry: () => void }) {
     <tr>
       <td colSpan={7} className="px-4 py-10 text-center">
         <div className="mx-auto max-w-sm space-y-3">
-          <p className="text-sm font-medium text-white">Nao foi possivel carregar os veiculos.</p>
-          <p className="text-sm text-slate-400">Verifique sua conexao e tente novamente.</p>
+          <p className="text-sm font-medium text-white">Não foi possível carregar os veículos.</p>
+          <p className="text-sm text-slate-400">Verifique sua conexão e tente novamente.</p>
           <Button variant="secondary" onClick={onRetry} icon={<RefreshCw size={17} />}>
             Tentar novamente
           </Button>
@@ -447,9 +447,9 @@ function EmptyRow({ hasFilters }: { hasFilters: boolean }) {
     <tr>
       <td colSpan={7} className="px-4 py-12 text-center">
         <div className="mx-auto max-w-md space-y-2">
-          <p className="text-sm font-medium text-white">{hasFilters ? 'Nenhum veiculo corresponde a estes filtros.' : 'Nenhum veiculo cadastrado ainda.'}</p>
+          <p className="text-sm font-medium text-white">{hasFilters ? 'Nenhum veículo corresponde a estes filtros.' : 'Nenhum veículo cadastrado ainda.'}</p>
           <p className="text-sm text-slate-400">
-            {hasFilters ? 'Ajuste a busca ou os filtros para ampliar os resultados.' : 'Crie o primeiro registro da frota quando a operacao estiver pronta.'}
+            {hasFilters ? 'Ajuste a busca ou os filtros para ampliar os resultados.' : 'Crie o primeiro registro da frota quando a operação estiver pronta.'}
           </p>
         </div>
       </td>

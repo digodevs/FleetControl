@@ -11,9 +11,9 @@ export default function App() {
         <Route path="/" element={<Navigate to="/dashboard" replace />} />
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/vehicles" element={<VehiclesPage />} />
-        <Route path="/users" element={<PlaceholderPage title="Usuarios" />} />
+        <Route path="/users" element={<PlaceholderPage title="Usuários" />} />
         <Route path="/profile" element={<PlaceholderPage title="Perfil" />} />
-        <Route path="/settings" element={<PlaceholderPage title="Configuracoes" />} />
+        <Route path="/settings" element={<PlaceholderPage title="Configurações" />} />
       </Route>
     </Routes>
   );

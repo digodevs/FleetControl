@@ -3,7 +3,7 @@ package com.fleetcontrol.dto;
 import jakarta.validation.constraints.NotBlank;
 
 public record RefreshTokenRequest(
-        @NotBlank(message = "O refresh token e obrigatorio.")
+        @NotBlank(message = "O refresh token é obrigatório.")
         String refreshToken
 ) {
 }

@@ -99,7 +99,7 @@ class AuthFlowIntegrationTests {
                                 "password", "wrong-password"
                         ))))
                 .andExpect(status().isUnauthorized())
-                .andExpect(jsonPath("$.message").value("E-mail ou senha invalidos."));
+                .andExpect(jsonPath("$.message").value("E-mail ou senha inválidos."));
     }
 
     @Test
@@ -117,7 +117,7 @@ class AuthFlowIntegrationTests {
     void protectedRouteRequiresToken() throws Exception {
         mockMvc.perform(get("/auth/me"))
                 .andExpect(status().isUnauthorized())
-                .andExpect(jsonPath("$.message").value("Autenticacao obrigatoria."));
+                .andExpect(jsonPath("$.message").value("Autenticação obrigatória."));
     }
 
     @Test

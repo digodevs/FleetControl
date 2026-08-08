@@ -5,6 +5,6 @@ import org.springframework.http.HttpStatus;
 public class EmailAlreadyRegisteredException extends ApiException {
 
     public EmailAlreadyRegisteredException() {
-        super(HttpStatus.CONFLICT, "E-mail ja esta cadastrado.");
+        super(HttpStatus.CONFLICT, "E-mail já está cadastrado.");
     }
 }

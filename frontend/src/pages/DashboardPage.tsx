@@ -23,15 +23,15 @@ const typeLabels: Record<string, string> = {
   CAR: 'Carros',
   MOTORCYCLE: 'Motos',
   VAN: 'Vans',
-  TRUCK: 'Caminhoes',
-  BUS: 'Onibus',
+  TRUCK: 'Caminhões',
+  BUS: 'Ônibus',
   OTHER: 'Outros',
 };
 
 const statusLabels: Record<string, string> = {
-  AVAILABLE: 'Disponivel',
+  AVAILABLE: 'Disponível',
   IN_USE: 'Em uso',
-  MAINTENANCE: 'Em manutencao',
+  MAINTENANCE: 'Em manutenção',
   INACTIVE: 'Inativo',
 };
 
@@ -65,7 +65,7 @@ export function DashboardPage() {
           <AlertTriangle className="mt-0.5 shrink-0" size={20} aria-hidden="true" />
           <div>
             <h2 className="text-base font-semibold">Dashboard indisponivel</h2>
-            <p className="mt-1 text-sm text-red-200">Nao foi possivel carregar os indicadores da frota pela API.</p>
+            <p className="mt-1 text-sm text-red-200">Não foi possível carregar os indicadores da frota pela API.</p>
           </div>
         </div>
       </section>
@@ -96,21 +96,21 @@ export function DashboardPage() {
           <div>
             <div className="inline-flex items-center gap-2 rounded border border-sky-900/70 bg-sky-950/40 px-3 py-1 text-xs font-medium text-sky-200">
               <Activity size={14} aria-hidden="true" />
-              Operacao em tempo real
+              Operação em tempo real
             </div>
-            <h2 className="mt-4 text-2xl font-semibold text-white">Visao executiva da frota</h2>
+            <h2 className="mt-4 text-2xl font-semibold text-white">Visão executiva da frota</h2>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-400">
-              Acompanhe disponibilidade, utilizacao e crescimento da frota com dados consolidados diretamente do banco de dados.
+              Acompanhe disponibilidade, utilização e crescimento da frota com dados consolidados diretamente do banco de dados.
             </p>
           </div>
 
           <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
-            <ExecutiveMetric label="Frota ativa" value={activeVehicles} helper="Veiculos fora do status inativo" icon={Car} />
+            <ExecutiveMetric label="Frota ativa" value={activeVehicles} helper="Veículos fora do status inativo" icon={Car} />
             <ExecutiveMetric label="Disponibilidade" value={`${availabilityRate}%`} helper="Percentual pronto para uso" icon={CheckCircle2} />
             <ExecutiveMetric
-              label="Mes atual"
+              label="Mês atual"
               value={monthDelta >= 0 ? `+${monthDelta}` : String(monthDelta)}
-              helper="Comparado ao mes anterior"
+              helper="Comparado ao mês anterior"
               icon={TrendingUp}
             />
           </div>
@@ -118,15 +118,15 @@ export function DashboardPage() {
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
-        <DashboardStatCard label="Total de veiculos" value={data.totalVehicles} icon={Car} tone="bg-sky-500/15 text-sky-300" helper="Base total cadastrada" />
-        <DashboardStatCard label="Disponiveis" value={data.availableVehicles} icon={CheckCircle2} tone="bg-emerald-500/15 text-emerald-300" helper="Prontos para operacao" />
+        <DashboardStatCard label="Total de veículos" value={data.totalVehicles} icon={Car} tone="bg-sky-500/15 text-sky-300" helper="Base total cadastrada" />
+        <DashboardStatCard label="Disponíveis" value={data.availableVehicles} icon={CheckCircle2} tone="bg-emerald-500/15 text-emerald-300" helper="Prontos para operação" />
         <DashboardStatCard label="Em uso" value={data.inUseVehicles} icon={CircleDot} tone="bg-violet-500/15 text-violet-300" helper="Atualmente alocados" />
-        <DashboardStatCard label="Em manutencao" value={data.maintenanceVehicles} icon={Wrench} tone="bg-amber-500/15 text-amber-300" helper="Indisponiveis temporarios" />
-        <DashboardStatCard label="Inativos" value={data.inactiveVehicles} icon={Ban} tone="bg-red-500/15 text-red-300" helper="Fora da operacao" />
+        <DashboardStatCard label="Em manutenção" value={data.maintenanceVehicles} icon={Wrench} tone="bg-amber-500/15 text-amber-300" helper="Indisponíveis temporários" />
+        <DashboardStatCard label="Inativos" value={data.inactiveVehicles} icon={Ban} tone="bg-red-500/15 text-red-300" helper="Fora da operação" />
       </div>
 
       <div className="grid gap-4 xl:grid-cols-2">
-        <DashboardChartPanel title="Veiculos por tipo" subtitle="Composicao atual da frota" footer={<LegendList items={vehiclesByType} colors={chartColors} valueKey="value" />}>
+        <DashboardChartPanel title="Veículos por tipo" subtitle="Composição atual da frota" footer={<LegendList items={vehiclesByType} colors={chartColors} valueKey="value" />}>
           {hasVehicles ? (
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
@@ -143,7 +143,7 @@ export function DashboardPage() {
           )}
         </DashboardChartPanel>
 
-        <DashboardChartPanel title="Veiculos por status" subtitle="Disponibilidade operacional" footer={<StatusLegend items={data.vehiclesByStatus} />}>
+        <DashboardChartPanel title="Veículos por status" subtitle="Disponibilidade operacional" footer={<StatusLegend items={data.vehiclesByStatus} />}>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={vehiclesByStatus}>
               <CartesianGrid stroke="#1f2937" strokeDasharray="3 3" vertical={false} />
@@ -160,13 +160,13 @@ export function DashboardPage() {
         </DashboardChartPanel>
 
         <DashboardChartPanel
-          title="Cadastros por mes"
-          subtitle="Tendencia de crescimento da base"
+          title="Cadastros por mês"
+          subtitle="Tendência de crescimento da base"
           className="xl:col-span-2"
           footer={
             <div className="grid gap-3 text-sm sm:grid-cols-2">
-              <MonthSummary icon={CalendarDays} label="Este mes" value={data.vehiclesCreatedThisMonth} />
-              <MonthSummary icon={TrendingUp} label="Mes anterior" value={data.vehiclesCreatedLastMonth} />
+              <MonthSummary icon={CalendarDays} label="Este mês" value={data.vehiclesCreatedThisMonth} />
+              <MonthSummary icon={TrendingUp} label="Mês anterior" value={data.vehiclesCreatedLastMonth} />
             </div>
           }
         >
@@ -250,7 +250,7 @@ function MonthSummary({ label, value, icon: Icon }: { label: string; value: numb
       </div>
       <div>
         <p className="text-xs text-slate-500">{label}</p>
-        <p className="text-base font-semibold text-white">{value.toLocaleString('pt-BR')} veiculos</p>
+        <p className="text-base font-semibold text-white">{value.toLocaleString('pt-BR')} veículos</p>
       </div>
     </div>
   );
@@ -259,7 +259,7 @@ function MonthSummary({ label, value, icon: Icon }: { label: string; value: numb
 function EmptyChartState() {
   return (
     <div className="flex h-full items-center justify-center rounded border border-dashed border-slate-700 text-sm text-slate-400">
-      Nenhum veiculo registrado ainda.
+      Nenhum veículo registrado ainda.
     </div>
   );
 }

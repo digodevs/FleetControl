@@ -29,7 +29,7 @@ public class GlobalExceptionHandler {
             fieldErrors.put(fieldError.getField(), fieldError.getDefaultMessage());
         }
 
-        return buildResponse(HttpStatus.BAD_REQUEST, "Falha de validacao.", request, fieldErrors);
+        return buildResponse(HttpStatus.BAD_REQUEST, "Falha de validação.", request, fieldErrors);
     }
 
     @ExceptionHandler({AccessDeniedException.class, AuthorizationDeniedException.class})
