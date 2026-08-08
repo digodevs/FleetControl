@@ -1,0 +1,40 @@
+# Operating system
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment
+.env
+.env.*
+!.env.example
+*.local
+
+# Java / Maven
+target/
+*.class
+*.log
+.mvn/timing.properties
+hs_err_pid*
+replay_pid*
+
+# Node / Vite
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Docker
+docker-data/
+
+# Runtime artifacts
+backend/logs/
+frontend/.vite/
