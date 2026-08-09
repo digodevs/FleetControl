@@ -9,19 +9,19 @@
 ![Docker](https://img.shields.io/badge/Docker-pronto-2496ed)
 ![Licença](https://img.shields.io/badge/licenca-MIT-white)
 
-FleetControl é um sistema profissional de gestão de frotas desenvolvido como projeto full-stack de portfolio para GitHub. A versão `v1.0.0` entrega uma API Spring Boot segura, banco PostgreSQL com migrations Flyway, autenticação JWT, gestão de veículos, painel executivo e interface administrativa responsiva em React.
+FleetControl é um sistema profissional de gestão de frotas desenvolvido como projeto full-stack de portfólio para GitHub. A versão `v1.0.0` entrega uma landing page pública, API Spring Boot segura, banco PostgreSQL com migrations Flyway, autenticação JWT, gestão de veículos, painel executivo e interface administrativa responsiva em React.
 
 ## Objetivo
 
-Fornecer uma base limpa e orientada a produção para operações de frota, com persistencia real em banco de dados, documentação de API, validações automatizadas, execução com Docker e frontend refinado para apresentação profissional no GitHub.
+Fornecer uma base limpa e orientada a produção para operações de frota, com persistência real em banco de dados, documentação de API, validações automatizadas, execução com Docker e frontend refinado para apresentação profissional no GitHub.
 
 ## Capturas De Tela
 
-As imagens devem ser adicionadas depois da publicação dos assets do repositorio.
+As imagens devem ser adicionadas depois da publicação dos assets do repositório.
 
-| Painel | Veículos |
-| --- | --- |
-| `docs/screenshots/dashboard.png` | `docs/screenshots/vehicles.png` |
+| Landing | Painel | Veículos |
+| --- | --- | --- |
+| `docs/screenshots/landing.png` | `docs/screenshots/dashboard.png` | `docs/screenshots/vehicles.png` |
 
 ## Arquitetura
 
@@ -33,32 +33,32 @@ FleetControl está organizado como monorepo:
 |-- frontend/                # SPA React + TypeScript
 |-- docs/                    # Documentação e screenshots
 |-- docker-compose.yml       # PostgreSQL + backend + frontend
-|-- .env.example             # Referencia de variaveis de ambiente
+|-- .env.example             # Referência de variáveis de ambiente
 `-- README.md
 ```
 
 Camadas do backend:
 
 ```text
-config        OpenAPI, seguranca e configuração da aplicação
+config        OpenAPI, segurança e configuração da aplicação
 controller    Endpoints REST
 dto           Contratos de requisição e resposta
 entity        Entidades JPA e enums
 exception     Tratamento de exceções de domínio e API
 mapper        Mapeamento entre entidade e DTO
 repository    Repositórios Spring Data e consultas otimizadas
-security      Filtro JWT, servico de token e detalhes do usuário
-service       Casos de uso de negocio
+security      Filtro JWT, serviço de token e detalhes do usuário
+service       Casos de uso de negócio
 ```
 
 Camadas do frontend:
 
 ```text
-components    Componentes reutilizaveis de UI e features
+components    Componentes reutilizáveis de UI e features
 contexts      Estado de autenticação e notificações
 hooks         Hooks de UI e TanStack Query
 layouts       Estrutura administrativa
-pages         Telas de dashboard e veículos
+pages         Landing page, autenticação, dashboard e veículos
 services      Clientes Axios para API
 types         Contratos TypeScript compartilhados
 ```
@@ -103,13 +103,15 @@ Infraestrutura:
 
 - Login JWT, token de renovação, logout e endpoint de usuário autenticado.
 - Controle de acesso por roles `ADMIN` e `EMPLOYEE`.
+- Landing page pública com botões para entrar, criar conta e acessar o painel quando autenticado.
+- Fluxo frontend com `/`, `/login`, `/register`, `/dashboard` e rotas internas protegidas.
 - CRUD de veículos com validação, paginação, filtros, ordenação e verificação de duplicidade.
 - Painel executivo com dados reais do PostgreSQL.
 - Swagger/OpenAPI com suporte a bearer JWT.
 - UI administrativa dark com sidebar, header, breadcrumb, gráficos, tabela de veículos, modais, paginação, skeletons, estados vazios e toasts.
 - Stack Dockerizada com PostgreSQL, backend e frontend.
 
-## Variaveis De Ambiente
+## Variáveis De Ambiente
 
 Copie o arquivo de exemplo e ajuste os valores locais:
 
@@ -117,7 +119,7 @@ Copie o arquivo de exemplo e ajuste os valores locais:
 cp .env.example .env
 ```
 
-Variaveis obrigatórias:
+Variáveis obrigatórias:
 
 | Variável | Descrição |
 | --- | --- |
@@ -135,7 +137,7 @@ Variaveis obrigatórias:
 | `JWT_ACCESS_EXPIRATION` | Duração do token de acesso em milissegundos |
 | `JWT_REFRESH_EXPIRATION` | Duração do token de renovação em milissegundos |
 | `FRONTEND_PORT` | Porta do container frontend no host |
-| `VITE_API_BASE_URL` | URL base publica da API usada na compilação do frontend |
+| `VITE_API_BASE_URL` | URL base pública da API usada na compilação do frontend |
 
 Nunca versione segredos reais, senhas de produção ou arquivos `.env` privados.
 
@@ -145,7 +147,7 @@ Requisitos:
 
 - Java 25
 - Node.js LTS
-- Docker Desktop ou engine Docker compativel
+- Docker Desktop ou engine Docker compatível
 
 Subir o PostgreSQL:
 
@@ -208,10 +210,10 @@ Remova o volume persistente do PostgreSQL apenas quando quiser resetar os dados 
 docker compose down -v
 ```
 
-Servicos Docker:
+Serviços Docker:
 
 - `postgres`: PostgreSQL 17 com volume persistente e healthcheck.
-- `backend`: API Spring Boot construida com Maven e Java 25.
+- `backend`: API Spring Boot construída com Maven e Java 25.
 - `frontend`: Build Vite servido por Nginx com fallback de SPA.
 
 ## Banco De Dados
@@ -227,6 +229,16 @@ Migrations atuais:
 ## Autenticação
 
 A autenticação usa tokens de acesso JWT e tokens de renovação.
+
+Fluxo de navegação:
+
+| Rota | Descrição |
+| --- | --- |
+| `/` | Landing page pública do FleetControl |
+| `/login` | Entrada de usuários existentes |
+| `/register` | Cadastro de nova conta |
+| `/dashboard` | Painel executivo protegido |
+| `/vehicles` | Gestão de veículos protegida |
 
 Endpoints principais:
 
@@ -246,7 +258,7 @@ Authorization: Bearer <access-token>
 
 ## Módulos Da API
 
-| Modulo | Endpoint | Acesso |
+| Módulo | Endpoint | Acesso |
 | --- | --- | --- |
 | Dashboard | `GET /api/dashboard` | `ADMIN`, `EMPLOYEE` |
 | Veículos | `/api/vehicles` | leitura: `ADMIN`, `EMPLOYEE`; escrita: `ADMIN` |
@@ -254,13 +266,13 @@ Authorization: Bearer <access-token>
 
 ## Swagger / OpenAPI
 
-O Swagger UI fica disponivel depois que o backend inicia:
+O Swagger UI fica disponível depois que o backend inicia:
 
 ```text
 http://localhost:8080/api/swagger-ui.html
 ```
 
-Use o botao `Autorizar` do Swagger e cole um token de acesso JWT para testar endpoints protegidos.
+Use o botão `Autorizar` do Swagger e cole um token de acesso JWT para testar endpoints protegidos.
 
 ## Verificações De Qualidade
 
@@ -325,4 +337,4 @@ Este projeto está licenciado sob a Licença MIT. Consulte `LICENSE`.
 
 ## Autor
 
-FleetControl foi construido como projeto full-stack profissional para portfolio no GitHub.
+FleetControl foi construído como projeto full-stack profissional para portfólio no GitHub.
