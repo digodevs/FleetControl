@@ -17,11 +17,15 @@ Fornecer uma base limpa e orientada a produção para operações de frota, com 
 
 ## Capturas De Tela
 
-As imagens devem ser adicionadas depois da publicação dos assets do repositório.
+### Landing Page
 
-| Landing | Painel | Veículos |
-| --- | --- | --- |
-| `docs/screenshots/landing.png` | `docs/screenshots/dashboard.png` | `docs/screenshots/vehicles.png` |
+![Landing page do FleetControl](docs/screenshots/landing.png)
+
+### Próximas Capturas
+
+| Painel | Veículos |
+| --- | --- |
+| `docs/screenshots/dashboard.png` | `docs/screenshots/vehicles.png` |
 
 ## Arquitetura
 
